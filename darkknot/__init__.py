@@ -1,4 +1,4 @@
-from darkknot import (
+from darkknot.darkknot import (
         AdaptiveDarkKnot,
         Vanilla1,
         Vanilla2,

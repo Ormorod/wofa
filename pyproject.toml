@@ -1,5 +1,5 @@
 [project]
-name = "wofa"
+name = "darkknot"
 version = "0.0.0"
 description = "Flex-Knot reconstruction of dark energy w(a), for use with Cobaya"
 authors = [{name="Adam Neil Ormondroyd", email="Adam.Ormondroyd@gmail.com"}]
