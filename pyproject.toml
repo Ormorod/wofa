@@ -7,7 +7,7 @@ readme = "README.md"
 dependencies = ["numpy", "cobaya", "linf@git+ssh://github.com/Ormorod/linf@main"]
 
 [project.urls]
-repository = "https://github.com/Ormorod/wofa"
+repository = "https://github.com/Ormorod/darkknot"
 
 [build-system]
 requires = ["setuptools"]
