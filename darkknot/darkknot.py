@@ -65,7 +65,7 @@ class Adaptive(DarkKnot):
 class VanillaDarkKnot(DarkKnot):
     def __init__(self, *args, **kwargs):
 
-        self.linf = Knot(self.amin, self.atoday)
+        self.linf = FlexKnot(self.amin, self.atoday)
         super().__init__(*args, **kwargs)
 
 
