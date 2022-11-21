@@ -34,10 +34,10 @@ class DarkKnot(Theory):
         return self.current_state["dark_energy"]
 
 
-class AdaptiveDarkKnot(DarkKnot):
+class Adaptive(DarkKnot):
 
     params = {
-        "Na": None,
+        "Nw": None,
         "w0": None,
         "a1": None,
         "w1": None,
