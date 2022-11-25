@@ -21,7 +21,14 @@ xlabel = r"$a$"
 ylabel = r"$w(a)$"
 
 
-def plot(samples: NestedSamples, ax=None, resolution=100, colors="Blues_r", title=None, fig=None):
+def plot(
+    samples: NestedSamples,
+    ax=None,
+    resolution=100,
+    colors="Blues_r",
+    title=None,
+    fig=None,
+):
     if ax is None:
         _, _ax = plt.subplots()
     else:
@@ -30,22 +37,18 @@ def plot(samples: NestedSamples, ax=None, resolution=100, colors="Blues_r", titl
     for Theory in theory_list[::-1]:
         if all([key in samples for key in Theory.params.keys()]):
             break
-    print(Theory)
     theory = Theory()
 
     weights = np.array([idx[1] for idx in samples.index])
 
-    a = np.linspace(theory.amin, theory.amax, resolution)
-
     cbar = plot_contours(
         lambda a, theta: theory.flexknot(a, theta),
-        ks,
+        np.linspace(theory.amin, theory.atoday, resolution),
         samples[theory.params.keys()],
         weights=weights,
         ax=_ax,
         colors=colors,
-    ) 
+    )
+    _ax.set(xlabel=xlabel, ylabel=ylabel)
 
     return _ax
-
-

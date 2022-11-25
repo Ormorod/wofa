@@ -5,11 +5,11 @@ from linf import AdaptiveLinf as AdaptiveKnot, Linf as FlexKnot
 
 class DarkKnot(Theory):
     """
-    Abstract base class for linf w(a).
+    Abstract base class for flexknot w(a).
 
     Requires additional class attribute params, which needs to be
-    ordered in the correct structure for a linf, and definition of
-    self.linf needs to be added to
+    ordered in the correct structure for a flexknot, and definition of
+    self.flexknot needs to be added to
     """
 
     num_as = 10000
@@ -18,7 +18,7 @@ class DarkKnot(Theory):
 
     def wofa(self, theta):
         a = np.logspace(np.log10(self.amin), np.log10(self.atoday), self.num_as)
-        w = self.linf(a, theta)
+        w = self.flexknot(a, theta)
 
         return a, w
 
@@ -58,14 +58,14 @@ class Adaptive(DarkKnot):
 
     def __init__(self, *args, **kwargs):
 
-        self.linf = AdaptiveKnot(self.amin, self.atoday)
+        self.flexknot = AdaptiveKnot(self.amin, self.atoday)
         super().__init__(*args, **kwargs)
 
 
 class VanillaDarkKnot(DarkKnot):
     def __init__(self, *args, **kwargs):
 
-        self.linf = FlexKnot(self.amin, self.atoday)
+        self.flexknot = FlexKnot(self.amin, self.atoday)
         super().__init__(*args, **kwargs)
 
 

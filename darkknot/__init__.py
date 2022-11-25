@@ -10,3 +10,4 @@ from darkknot.darkknot import (
     Vanilla8,
     Vanilla9,
 )
+from darkknot.plot import plot
