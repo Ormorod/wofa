@@ -1,17 +1,13 @@
 [project]
 name = "darkknot"
-version = "0.1.0"
+version = "0.1.1"
 description = "Flex-Knot reconstruction of dark energy w(a), for use with Cobaya"
 authors = [{name="Adam Neil Ormondroyd", email="Adam.Ormondroyd@gmail.com"}]
 readme = "README.md"
-dependencies = ["numpy", "cobaya", "linf@git+ssh://github.com/Ormorod/linf@main"]
+dependencies = ["numpy", "cobaya", "flexknot@git+ssh://github.com/Ormorod/flexknot@main"]
 
 [project.urls]
 repository = "https://github.com/Ormorod/darkknot"
-
-[build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
 
 [project.optional-dependencies]
 dev = ["black"]
