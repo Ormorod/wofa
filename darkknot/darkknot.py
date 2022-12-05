@@ -1,6 +1,6 @@
 import numpy as np
 from cobaya import Theory
-from darkknot import AdaptiveKnot, FlexKnot
+from flexknot import AdaptiveKnot, FlexKnot
 
 
 class DarkKnot(Theory):
