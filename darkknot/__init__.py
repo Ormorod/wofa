@@ -1,5 +1,6 @@
 from darkknot.darkknot import (
     Adaptive,
+    Vanilla0,
     Vanilla1,
     Vanilla2,
     Vanilla3,
