@@ -73,6 +73,11 @@ class VanillaDarkKnot(DarkKnot):
 # defined with a for loop
 
 
+class Vanilla0(VanillaDarkKnot):
+
+    params = {}
+
+
 class Vanilla1(VanillaDarkKnot):
 
     params = {

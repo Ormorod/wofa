@@ -5,6 +5,7 @@ from fgivenx import plot_contours
 from darkknot import darkknot
 
 theory_list = [
+    darkknot.Vanilla0,
     darkknot.Vanilla1,
     darkknot.Vanilla2,
     darkknot.Vanilla3,
@@ -34,18 +35,25 @@ def plot(
     else:
         _ax = ax
 
-    for Theory in theory_list[::-1]:
-        if all([key in samples for key in Theory.params.keys()]):
-            break
-    theory = Theory()
-
-    weights = np.array([idx[1] for idx in samples.index])
+    # special case to allow Nw column to be added to samples, to treat
+    # concatenated Vanilla samples to be treated as Adaptive, even if
+    # they don't go up to 9 nodes
+    if "Nw" in samples:
+        theory = darkknot.Adaptive()
+        keys = theory.params.keys()
+        keys = list(filter(lambda k: k in samples, keys))
+    else:
+        for Theory in theory_list[::-1]:
+            if all([key in samples for key in Theory.params.keys()]):
+                theory = Theory()
+                break
+        keys = theory.params.keys()
 
     cbar = plot_contours(
         lambda a, theta: theory.flexknot(a, theta),
         np.linspace(theory.amin, theory.atoday, resolution),
-        samples[theory.params.keys()],
-        weights=weights,
+        samples[keys],
+        weights=samples.get_weights(),
         ax=_ax,
         colors=colors,
     )
