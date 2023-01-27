@@ -21,7 +21,7 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install "black[jupyter]"
     - name: black compliance checks
-      run: python -m black anesthetic tests --check
+      run: python -m black --check
 
   pip:
     runs-on: ${{ matrix.os }}
