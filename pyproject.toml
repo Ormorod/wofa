@@ -10,4 +10,4 @@ dependencies = ["numpy", "cobaya", "flexknot@git+ssh://github.com/Ormorod/flexkn
 repository = "https://github.com/Ormorod/darkknot"
 
 [project.optional-dependencies]
-dev = ["black"]
+dev = ["black", "pre-commit"]
