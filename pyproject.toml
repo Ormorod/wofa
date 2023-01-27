@@ -1,6 +1,6 @@
 [project]
 name = "darkknot"
-version = "0.2.0"
+version = "0.2.1"
 description = "Flex-Knot reconstruction of dark energy w(a), for use with Cobaya"
 authors = [{name="Adam Neil Ormondroyd", email="Adam.Ormondroyd@gmail.com"}]
 readme = "README.md"
