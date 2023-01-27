@@ -72,6 +72,7 @@ class VanillaDarkKnot(DarkKnot):
 # TODO: see if I can just put the params in the constructor to be
 # defined with a for loop
 
+
 class Vanilla0(VanillaDarkKnot):
 
     params = {}
