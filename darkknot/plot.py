@@ -57,6 +57,6 @@ def plot(
         ax=_ax,
         colors=colors,
     )
-    _ax.set(xlabel=xlabel, ylabel=ylabel)
+    _ax.set(xlabel=xlabel, ylabel=ylabel, title=title)
 
     return _ax

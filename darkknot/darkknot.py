@@ -35,7 +35,6 @@ class DarkKnot(Theory):
 
 
 class Adaptive(DarkKnot):
-
     params = {
         "Nw": None,
         "w0": None,
@@ -57,14 +56,12 @@ class Adaptive(DarkKnot):
     }
 
     def __init__(self, *args, **kwargs):
-
         self.flexknot = AdaptiveKnot(self.amin, self.atoday)
         super().__init__(*args, **kwargs)
 
 
 class VanillaDarkKnot(DarkKnot):
     def __init__(self, *args, **kwargs):
-
         self.flexknot = FlexKnot(self.amin, self.atoday)
         super().__init__(*args, **kwargs)
 
@@ -74,19 +71,16 @@ class VanillaDarkKnot(DarkKnot):
 
 
 class Vanilla0(VanillaDarkKnot):
-
     params = {}
 
 
 class Vanilla1(VanillaDarkKnot):
-
     params = {
         "w8": None,
     }
 
 
 class Vanilla2(VanillaDarkKnot):
-
     params = {
         "w0": None,
         "w8": None,
@@ -94,7 +88,6 @@ class Vanilla2(VanillaDarkKnot):
 
 
 class Vanilla3(VanillaDarkKnot):
-
     params = {
         "w0": None,
         "a1": None,
@@ -104,7 +97,6 @@ class Vanilla3(VanillaDarkKnot):
 
 
 class Vanilla4(VanillaDarkKnot):
-
     params = {
         "w0": None,
         "a1": None,
@@ -116,7 +108,6 @@ class Vanilla4(VanillaDarkKnot):
 
 
 class Vanilla5(VanillaDarkKnot):
-
     params = {
         "w0": None,
         "a1": None,
@@ -130,7 +121,6 @@ class Vanilla5(VanillaDarkKnot):
 
 
 class Vanilla6(VanillaDarkKnot):
-
     params = {
         "w0": None,
         "a1": None,
@@ -146,7 +136,6 @@ class Vanilla6(VanillaDarkKnot):
 
 
 class Vanilla7(VanillaDarkKnot):
-
     params = {
         "w0": None,
         "a1": None,
@@ -164,7 +153,6 @@ class Vanilla7(VanillaDarkKnot):
 
 
 class Vanilla8(VanillaDarkKnot):
-
     params = {
         "w0": None,
         "a1": None,
@@ -184,7 +172,6 @@ class Vanilla8(VanillaDarkKnot):
 
 
 class Vanilla9(VanillaDarkKnot):
-
     params = {
         "w0": None,
         "a1": None,
