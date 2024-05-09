@@ -7,7 +7,7 @@ readme = "README.md"
 dependencies = ["numpy", "cobaya", "flexknot@git+ssh://github.com/Ormorod/flexknot@main"]
 
 [project.urls]
-repository = "https://github.com/Ormorod/darkknot"
+repository = "https://github.com/adamormondroyd/darkknot"
 
 [project.optional-dependencies]
 dev = ["black", "pre-commit"]
