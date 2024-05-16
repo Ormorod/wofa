@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from anesthetic import NestedSamples
-from fgivenx import plot_contours
+from fgivenx import plot_contours, plot_lines
 from darkknot import darkknot
 
 theory_list = [
