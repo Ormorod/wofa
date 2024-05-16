@@ -33,8 +33,6 @@ def plot(
     """
     Plot functional posterior of w(a) samples.
 
-    **kwargs passed on to fgivenx.plot_contours (or plot_lines)
-
     Parameters
     ----------
     samples : NestedSamples
