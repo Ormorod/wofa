@@ -27,7 +27,6 @@ def plot(
     ax=None,
     resolution=100,
     colors="Blues_r",
-    title=None,
     fig=None,
 ):
     if ax is None:
@@ -57,6 +56,6 @@ def plot(
         ax=_ax,
         colors=colors,
     )
-    _ax.set(xlabel=xlabel, ylabel=ylabel, title=title)
+    _ax.set(xlabel=xlabel, ylabel=ylabel)
 
     return _ax
