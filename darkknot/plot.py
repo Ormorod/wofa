@@ -67,9 +67,7 @@ def plot(
 
     """
     if ax is None:
-        _, _ax = plt.subplots()
-    else:
-        _ax = ax
+        _, ax = plt.subplots()
 
     # special case to allow Nw column to be added to samples, to treat
     # concatenated Vanilla samples to be treated as Adaptive, even if
@@ -91,7 +89,7 @@ def plot(
             np.linspace(theory.amin, theory.atoday, resolution),
             samples[keys],
             weights=samples.get_weights(),
-            ax=_ax,
+            ax=ax,
             color=color,
             **kwargs,
         )
@@ -101,10 +99,10 @@ def plot(
             np.linspace(theory.amin, theory.atoday, resolution),
             samples[keys],
             weights=samples.get_weights(),
-            ax=_ax,
+            ax=ax,
             colors=colors,
             **kwargs,
         )
-    _ax.set(xlabel=xlabel, ylabel=ylabel)
+    ax.set(xlabel=xlabel, ylabel=ylabel)
 
-    return _ax
+    return ax
