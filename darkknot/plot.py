@@ -29,6 +29,11 @@ def plot(
     ylabel=r"$w(a)$",
     **kwargs,
 ):
+    """
+    Plot functional posterior of w(a) samples.
+
+    **kwargs passed on to fgivenx.plot_contours (or plot_lines)
+    """
     if ax is None:
         _, _ax = plt.subplots()
     else:
