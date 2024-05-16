@@ -26,12 +26,43 @@ def plot(
     colors="Blues_r",
     xlabel=r"$a$",
     ylabel=r"$w(a)$",
+    lines=False,
+    color="blue",
     **kwargs,
 ):
     """
     Plot functional posterior of w(a) samples.
 
     **kwargs passed on to fgivenx.plot_contours (or plot_lines)
+
+    Parameters
+    ----------
+    samples : NestedSamples
+        Samples to plot.
+
+    ax : matplotlib.Axes, optional
+        Axes to plot on. If None, a new figure is created.
+
+    resolution : int, optional
+        Resolution of the plot.
+
+    colors : str, optional
+        Color map to use for contours.
+
+    xlabel : str, optional
+        Label for x-axis.
+
+    ylabel : str, optional
+        Label for y-axis.
+
+    lines : bool, optional
+        Plot lines instead of contours.
+
+    color : str, optional
+        Color of lines.
+
+    **kwargs : passed to fgivenx.plot_contours or fgivenx.plot_lines
+
     """
     if ax is None:
         _, _ax = plt.subplots()
@@ -60,6 +91,7 @@ def plot(
             weights=samples.get_weights(),
             ax=_ax,
             color=color,
+            **kwargs,
         )
     else:
         plot_contours(
@@ -69,6 +101,7 @@ def plot(
             weights=samples.get_weights(),
             ax=_ax,
             colors=colors,
+            **kwargs,
         )
     _ax.set(xlabel=xlabel, ylabel=ylabel)
 
