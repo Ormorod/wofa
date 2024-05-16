@@ -24,7 +24,6 @@ def plot(
     ax=None,
     resolution=100,
     colors="Blues_r",
-    fig=None,
     xlabel=r"$a$",
     ylabel=r"$w(a)$",
     **kwargs,
@@ -53,14 +52,24 @@ def plot(
                 break
         keys = theory.params.keys()
 
-    cbar = plot_contours(
-        lambda a, theta: theory.flexknot(a, theta),
-        np.linspace(theory.amin, theory.atoday, resolution),
-        samples[keys],
-        weights=samples.get_weights(),
-        ax=_ax,
-        colors=colors,
-    )
+    if lines:
+        plot_lines(
+            lambda a, theta: theory.flexknot(a, theta),
+            np.linspace(theory.amin, theory.atoday, resolution),
+            samples[keys],
+            weights=samples.get_weights(),
+            ax=_ax,
+            color=color,
+        )
+    else:
+        plot_contours(
+            lambda a, theta: theory.flexknot(a, theta),
+            np.linspace(theory.amin, theory.atoday, resolution),
+            samples[keys],
+            weights=samples.get_weights(),
+            ax=_ax,
+            colors=colors,
+        )
     _ax.set(xlabel=xlabel, ylabel=ylabel)
 
     return _ax
