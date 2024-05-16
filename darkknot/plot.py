@@ -61,6 +61,10 @@ def plot(
 
     **kwargs : passed to fgivenx.plot_contours or fgivenx.plot_lines
 
+    Returns
+    -------
+    ax : matplotlib.Axes
+
     """
     if ax is None:
         _, _ax = plt.subplots()
