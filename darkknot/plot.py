@@ -18,9 +18,6 @@ theory_list = [
     darkknot.Adaptive,
 ]
 
-xlabel = r"$a$"
-ylabel = r"$w(a)$"
-
 
 def plot(
     samples: NestedSamples,
@@ -28,6 +25,9 @@ def plot(
     resolution=100,
     colors="Blues_r",
     fig=None,
+    xlabel=r"$a$",
+    ylabel=r"$w(a)$",
+    **kwargs,
 ):
     if ax is None:
         _, _ax = plt.subplots()
