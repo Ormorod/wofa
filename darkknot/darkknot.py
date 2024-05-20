@@ -16,6 +16,17 @@ class DarkKnot(Theory):
     amin = 1e-10
     atoday = 1
 
+    def __init__(self, n, *args, **kwargs):
+        if n >= 2:
+            self.params["w0"] = None
+        for i in range(1, n-1):
+            self.params[f"a{i}"] = None
+            self.params[f"w{i}"] = None
+        if n >= 1:
+            self.params["wn"] = None
+
+        return super().__init__(*args, **kwargs)
+
     def wofa(self, theta):
         a = np.logspace(np.log10(self.amin), np.log10(self.atoday), self.num_as)
         w = self.flexknot(a, theta)
@@ -35,158 +46,17 @@ class DarkKnot(Theory):
 
 
 class Adaptive(DarkKnot):
-    params = {
-        "Nw": None,
-        "w0": None,
-        "a1": None,
-        "w1": None,
-        "a2": None,
-        "w2": None,
-        "a3": None,
-        "w3": None,
-        "a4": None,
-        "w4": None,
-        "a5": None,
-        "w5": None,
-        "a6": None,
-        "w6": None,
-        "a7": None,
-        "w7": None,
-        "w8": None,
-    }
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, n, *args, **kwargs):
+        self.params = {"Nw": None}
         self.flexknot = AdaptiveKnot(self.amin, self.atoday)
-        super().__init__(*args, **kwargs)
+        super().__init__(n, *args, **kwargs)
 
 
-class VanillaDarkKnot(DarkKnot):
-    def __init__(self, *args, **kwargs):
+class Vanilla(DarkKnot):
+    def __init__(self, n, *args, **kwargs):
+        self.params = dict(
+            [(f"w{i}", None) for i in range(n)]
+        )
         self.flexknot = FlexKnot(self.amin, self.atoday)
-        super().__init__(*args, **kwargs)
-
-
-# TODO: see if I can just put the params in the constructor to be
-# defined with a for loop
-
-
-class Vanilla0(VanillaDarkKnot):
-    params = {}
-
-
-class Vanilla1(VanillaDarkKnot):
-    params = {
-        "w8": None,
-    }
-
-
-class Vanilla2(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "w8": None,
-    }
-
-
-class Vanilla3(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "a1": None,
-        "w1": None,
-        "w8": None,
-    }
-
-
-class Vanilla4(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "a1": None,
-        "w1": None,
-        "a2": None,
-        "w2": None,
-        "w8": None,
-    }
-
-
-class Vanilla5(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "a1": None,
-        "w1": None,
-        "a2": None,
-        "w2": None,
-        "a3": None,
-        "w3": None,
-        "w8": None,
-    }
-
-
-class Vanilla6(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "a1": None,
-        "w1": None,
-        "a2": None,
-        "w2": None,
-        "a3": None,
-        "w3": None,
-        "a4": None,
-        "w4": None,
-        "w8": None,
-    }
-
-
-class Vanilla7(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "a1": None,
-        "w1": None,
-        "a2": None,
-        "w2": None,
-        "a3": None,
-        "w3": None,
-        "a4": None,
-        "w4": None,
-        "a5": None,
-        "w5": None,
-        "w8": None,
-    }
-
-
-class Vanilla8(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "a1": None,
-        "w1": None,
-        "a2": None,
-        "w2": None,
-        "a3": None,
-        "w3": None,
-        "a4": None,
-        "w4": None,
-        "a5": None,
-        "w5": None,
-        "a6": None,
-        "w6": None,
-        "w8": None,
-    }
-
-
-class Vanilla9(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "a1": None,
-        "w1": None,
-        "a2": None,
-        "w2": None,
-        "a3": None,
-        "w3": None,
-        "a4": None,
-        "w4": None,
-        "a5": None,
-        "w5": None,
-        "a6": None,
-        "w6": None,
-        "a7": None,
-        "w7": None,
-        "w8": None,
-    }
+        super().__init__(n, *args, **kwargs)
