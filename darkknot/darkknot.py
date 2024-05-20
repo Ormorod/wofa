@@ -51,13 +51,19 @@ class Adaptive(DarkKnot):
 
     n = 9
 
+    def __init__(self, *args, **kwargs):
+        self.flexknot = AdaptiveKnot(self.amin, self.atoday)
+        super().__init__(*args, **kwargs)
+
     def initialize(self):
         self.params = {"Nw": None}
-        self.flexknot = AdaptiveKnot(self.amin, self.atoday)
         super().initialize()
 
 
 class Vanilla(DarkKnot):
-    def initialize(self):
+    def __init__(self, *args, **kwargs):
         self.flexknot = FlexKnot(self.amin, self.atoday)
+        super().__init__(*args, **kwargs)
+
+    def initialize(self):
         super().initialize()
