@@ -16,6 +16,7 @@ class DarkKnot(Theory):
     amin = 1e-10
     atoday = 1
     n = None
+    params = {}
 
     def initialize(self):
         if self.n >= 2:
