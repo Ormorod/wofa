@@ -1,3 +1,4 @@
+from copy import deepcopy
 import numpy as np
 from cobaya import Theory
 from flexknot import AdaptiveKnot, FlexKnot
@@ -69,124 +70,17 @@ class VanillaDarkKnot(DarkKnot):
 # TODO: see if I can just put the params in the constructor to be
 # defined with a for loop
 
+params = {}
+for i in range(10):
+    if i >= 3:
+        params[f"a{i-2}"] = None
+    if i >= 2:
+        params[f"w{i-2}"] = None
+    finalparams = deepcopy(params)
+    if i >= 1:
+        finalparams["wn"] = None
 
-class Vanilla0(VanillaDarkKnot):
-    params = {}
+    name = f'Vanilla{i}'
 
-
-class Vanilla1(VanillaDarkKnot):
-    params = {
-        "w8": None,
-    }
-
-
-class Vanilla2(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "w8": None,
-    }
-
-
-class Vanilla3(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "a1": None,
-        "w1": None,
-        "w8": None,
-    }
-
-
-class Vanilla4(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "a1": None,
-        "w1": None,
-        "a2": None,
-        "w2": None,
-        "w8": None,
-    }
-
-
-class Vanilla5(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "a1": None,
-        "w1": None,
-        "a2": None,
-        "w2": None,
-        "a3": None,
-        "w3": None,
-        "w8": None,
-    }
-
-
-class Vanilla6(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "a1": None,
-        "w1": None,
-        "a2": None,
-        "w2": None,
-        "a3": None,
-        "w3": None,
-        "a4": None,
-        "w4": None,
-        "w8": None,
-    }
-
-
-class Vanilla7(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "a1": None,
-        "w1": None,
-        "a2": None,
-        "w2": None,
-        "a3": None,
-        "w3": None,
-        "a4": None,
-        "w4": None,
-        "a5": None,
-        "w5": None,
-        "w8": None,
-    }
-
-
-class Vanilla8(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "a1": None,
-        "w1": None,
-        "a2": None,
-        "w2": None,
-        "a3": None,
-        "w3": None,
-        "a4": None,
-        "w4": None,
-        "a5": None,
-        "w5": None,
-        "a6": None,
-        "w6": None,
-        "w8": None,
-    }
-
-
-class Vanilla9(VanillaDarkKnot):
-    params = {
-        "w0": None,
-        "a1": None,
-        "w1": None,
-        "a2": None,
-        "w2": None,
-        "a3": None,
-        "w3": None,
-        "a4": None,
-        "w4": None,
-        "a5": None,
-        "w5": None,
-        "a6": None,
-        "w6": None,
-        "a7": None,
-        "w7": None,
-        "w8": None,
-    }
+    locals()[name] = type(name, (VanillaDarkKnot,),
+                          {"params": finalparams})
