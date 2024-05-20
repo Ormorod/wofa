@@ -17,7 +17,7 @@ class DarkKnot(Theory):
     atoday = 1
     n = None
 
-    def __init__(self, *args, **kwargs):
+    def initialize(self):
         if self.n >= 2:
             self.params["w0"] = None
         for i in range(1, self.n-1):
@@ -26,7 +26,7 @@ class DarkKnot(Theory):
         if self.n >= 1:
             self.params["wn"] = None
 
-        return super().__init__(*args, **kwargs)
+        return super().initialize()
 
     def wofa(self, theta):
         a = np.logspace(np.log10(self.amin), np.log10(self.atoday), self.num_as)
@@ -50,16 +50,13 @@ class Adaptive(DarkKnot):
 
     n = 9
 
-    def __init__(self, n, *args, **kwargs):
+    def initialize(self):
         self.params = {"Nw": None}
         self.flexknot = AdaptiveKnot(self.amin, self.atoday)
-        super().__init__(n, *args, **kwargs)
+        super().initialize()
 
 
 class Vanilla(DarkKnot):
-    def __init__(self, *args, **kwargs):
-        self.params = dict(
-            [(f"w{i}", None) for i in range(self.n)]
-        )
+    def initialize(self):
         self.flexknot = FlexKnot(self.amin, self.atoday)
-        super().__init__(*args, **kwargs)
+        super().initialize()
