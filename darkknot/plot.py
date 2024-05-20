@@ -60,6 +60,7 @@ def plot(
     # concatenated Vanilla samples to be treated as Adaptive, even if
     # they don't go up to 9 nodes
     if "Nw" in samples:
+        # TODO: adaptive also needs correct n
         theory = darkknot.Adaptive()
         keys = theory.params.keys()
         keys = list(filter(lambda k: k in samples, keys))
