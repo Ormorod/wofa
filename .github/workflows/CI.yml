@@ -48,12 +48,10 @@ jobs:
         if: runner.os == 'macOS'
         run: brew install cmake openmpi gcc
 
-      - name: pip install dependencies
+      - name: upgrade pip
         run: |
           python -m pip install --upgrade pip
           pip install git+https://github.com/PolyChord/PolyChordLite
-          pip install anesthetic
-          pip install git+https://github.com/adamormondroyd/flexknot
 
       - name: Test pip install
         run: |
