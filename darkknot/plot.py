@@ -69,7 +69,7 @@ def plot(
                 if pattern.match(key))
         print(f"regexed {keys}")
         n = max(int(key[1:]) for key in keys if key != "wn") + 2
-        theory = darkknot.Vanilla(n)
+        theory = darkknot.Vanilla({"n": n})
         keys = theory.params.keys()
         print(f"theory keys: {keys}")
 
