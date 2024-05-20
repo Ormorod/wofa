@@ -1,22 +1,9 @@
+import re
 import numpy as np
 import matplotlib.pyplot as plt
 from anesthetic import NestedSamples
 from fgivenx import plot_contours, plot_lines
 from darkknot import darkknot
-
-theory_list = [
-    darkknot.Vanilla0,
-    darkknot.Vanilla1,
-    darkknot.Vanilla2,
-    darkknot.Vanilla3,
-    darkknot.Vanilla4,
-    darkknot.Vanilla5,
-    darkknot.Vanilla6,
-    darkknot.Vanilla7,
-    darkknot.Vanilla8,
-    darkknot.Vanilla9,
-    darkknot.Adaptive,
-]
 
 
 def plot(
@@ -77,11 +64,14 @@ def plot(
         keys = theory.params.keys()
         keys = list(filter(lambda k: k in samples, keys))
     else:
-        for Theory in theory_list[::-1]:
-            if all([key in samples for key in Theory.params.keys()]):
-                theory = Theory()
-                break
+        pattern = re.compile(r"^[wa]\d+$|^wn$")
+        keys = (key for key in list(samples.columns.get_level_values(0))
+                if pattern.match(key))
+        print(f"regexed {keys}")
+        n = max(int(key[1:]) for key in keys) + 2
+        theory = darkknot.Vanilla(n)
         keys = theory.params.keys()
+        print(f"theory keys: {keys}")
 
     if lines:
         plot_lines(
