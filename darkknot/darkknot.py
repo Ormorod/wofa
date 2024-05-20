@@ -15,14 +15,15 @@ class DarkKnot(Theory):
     num_as = 10000
     amin = 1e-10
     atoday = 1
+    n = None
 
-    def __init__(self, n, *args, **kwargs):
-        if n >= 2:
+    def __init__(self, *args, **kwargs):
+        if self.n >= 2:
             self.params["w0"] = None
-        for i in range(1, n-1):
+        for i in range(1, self.n-1):
             self.params[f"a{i}"] = None
             self.params[f"w{i}"] = None
-        if n >= 1:
+        if self.n >= 1:
             self.params["wn"] = None
 
         return super().__init__(*args, **kwargs)
@@ -47,6 +48,8 @@ class DarkKnot(Theory):
 
 class Adaptive(DarkKnot):
 
+    n = 9
+
     def __init__(self, n, *args, **kwargs):
         self.params = {"Nw": None}
         self.flexknot = AdaptiveKnot(self.amin, self.atoday)
@@ -54,9 +57,9 @@ class Adaptive(DarkKnot):
 
 
 class Vanilla(DarkKnot):
-    def __init__(self, n, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         self.params = dict(
-            [(f"w{i}", None) for i in range(n)]
+            [(f"w{i}", None) for i in range(self.n)]
         )
         self.flexknot = FlexKnot(self.amin, self.atoday)
-        super().__init__(n, *args, **kwargs)
+        super().__init__(*args, **kwargs)
