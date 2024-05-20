@@ -67,9 +67,7 @@ class VanillaDarkKnot(DarkKnot):
         super().__init__(*args, **kwargs)
 
 
-# TODO: see if I can just put the params in the constructor to be
-# defined with a for loop
-
+# NOTE: playing with locals() is a terrible idea
 params = {}
 for i in range(10):
     if i >= 3:
