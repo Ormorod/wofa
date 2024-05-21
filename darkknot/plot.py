@@ -59,20 +59,19 @@ def plot(
     # special case to allow Nw column to be added to samples, to treat
     # concatenated Vanilla samples to be treated as Adaptive, even if
     # they don't go up to 9 nodes
-    if "Nw" in samples:
-        # TODO: adaptive also needs correct n
-        theory = darkknot.Adaptive()
+    pattern = re.compile(r"^[wa]\d+$|^wn$|^Nw$")
+    keys = (key for key in list(samples.columns.get_level_values(0))
+            if pattern.match(key))
+    print(f"regexed {keys}")
+    n = max(int(key[1:]) for key in keys if key != "wn" and key != "Nw") + 2
+    if "Nw" in keys:
+        theory = darkknot.Adaptive({"n": n})
         keys = theory.params.keys()
         keys = list(filter(lambda k: k in samples, keys))
     else:
-        pattern = re.compile(r"^[wa]\d+$|^wn$")
-        keys = (key for key in list(samples.columns.get_level_values(0))
-                if pattern.match(key))
-        print(f"regexed {keys}")
-        n = max(int(key[1:]) for key in keys if key != "wn") + 2
         theory = darkknot.Vanilla({"n": n})
         keys = theory.params.keys()
-        print(f"theory keys: {keys}")
+    print(f"theory keys: {keys}")
 
     if lines:
         plot_lines(
