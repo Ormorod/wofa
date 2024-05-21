@@ -56,9 +56,6 @@ def plot(
     if ax is None:
         _, ax = plt.subplots()
 
-    # special case to allow Nw column to be added to samples, to treat
-    # concatenated Vanilla samples to be treated as Adaptive, even if
-    # they don't go up to 9 nodes
     pattern = re.compile(r"^[wa]\d+$|^wn$|^Nw$")
     keys = (key for key in list(samples.columns.get_level_values(0))
             if pattern.match(key))
