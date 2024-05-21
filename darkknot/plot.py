@@ -57,10 +57,11 @@ def plot(
         _, ax = plt.subplots()
 
     pattern = re.compile(r"^[wa]\d+$|^wn$|^Nw$")
-    keys = (key for key in list(samples.columns.get_level_values(0))
-            if pattern.match(key))
-    print(f"regexed {keys}")
+    keys = [key for key in list(samples.columns.get_level_values(0))
+            if pattern.match(key)]
     n = max(int(key[1:]) for key in keys if key != "wn" and key != "Nw") + 2
+    # regex matching may pick up the wrong order of keys, so get the correct
+    # order from the relevant theory
     if "Nw" in keys:
         theory = darkknot.Adaptive({"n": n})
         keys = theory.params.keys()
@@ -68,7 +69,6 @@ def plot(
     else:
         theory = darkknot.Vanilla({"n": n})
         keys = theory.params.keys()
-    print(f"theory keys: {keys}")
 
     if lines:
         plot_lines(
