@@ -64,6 +64,3 @@ class Vanilla(DarkKnot):
     def __init__(self, *args, **kwargs):
         self.flexknot = FlexKnot(self.amin, self.atoday)
         super().__init__(*args, **kwargs)
-
-    def initialize(self):
-        super().initialize()
