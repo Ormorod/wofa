@@ -15,6 +15,7 @@ def plot(
     ylabel=r"$w(a)$",
     contours=True,
     color="blue",
+    redshift=None,
     **kwargs,
 ):
     """
@@ -46,6 +47,9 @@ def plot(
     color : str, optional
         Color of lines.
 
+    redshift : None | float
+        Plot against redshift, and if so, what redshift to go back to.
+
     **kwargs : passed to fgivenx.plot_contours or fgivenx.plot_lines
 
     Returns
@@ -70,10 +74,21 @@ def plot(
         theory = darkknot.Vanilla({"n": n})
         keys = theory.params.keys()
 
+    if redshift:
+        def f(z, theta):
+            return theory.flexknot(1/z+1, theta)
+        # really z
+        a = np.linspace(1/theory.atoday-1, redshift)
+        # change xlabel if it is still the default
+        if xlabel == r"$a$":
+            xlabel = r"$z$"
+    else:
+        f = theory.flexknot
+
     if contours:
         plot_contours(
-            lambda a, theta: theory.flexknot(a, theta),
-            np.linspace(theory.amin, theory.atoday, resolution),
+            f,
+            a,
             samples[keys],
             weights=samples.get_weights(),
             ax=ax,
@@ -82,8 +97,8 @@ def plot(
         )
     else:
         plot_lines(
-            lambda a, theta: theory.flexknot(a, theta),
-            np.linspace(theory.amin, theory.atoday, resolution),
+            f,
+            a,
             samples[keys],
             weights=samples.get_weights(),
             ax=ax,
