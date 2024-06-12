@@ -84,16 +84,6 @@ def plot(
         keys = theory.params.keys()
 
     if contours:
-        plot_lines(
-            lambda a, theta: theory.flexknot(a, theta),
-            np.linspace(theory.amin, theory.atoday, resolution),
-            samples[keys],
-            weights=samples.get_weights(),
-            ax=ax,
-            color=color,
-            **kwargs,
-        )
-    else:
         plot_contours(
             lambda a, theta: theory.flexknot(a, theta),
             np.linspace(theory.amin, theory.atoday, resolution),
@@ -101,6 +91,16 @@ def plot(
             weights=samples.get_weights(),
             ax=ax,
             colors=colors,
+            **kwargs,
+        )
+    else:
+        plot_lines(
+            lambda a, theta: theory.flexknot(a, theta),
+            np.linspace(theory.amin, theory.atoday, resolution),
+            samples[keys],
+            weights=samples.get_weights(),
+            ax=ax,
+            color=color,
             **kwargs,
         )
     ax.set(xlabel=xlabel, ylabel=ylabel)
