@@ -1,6 +1,6 @@
 [project]
 name = "darkknot"
-version = "0.2.3"
+dynamic = ["version"]
 description = "Flex-Knot reconstruction of dark energy w(a), for use with Cobaya"
 authors = [{name="Adam Neil Ormondroyd", email="Adam.Ormondroyd@gmail.com"}]
 readme = "README.md"
@@ -11,3 +11,9 @@ repository = "https://github.com/adamormondroyd/darkknot"
 
 [project.optional-dependencies]
 dev = ["black", "pre-commit"]
+
+[build-system]
+requires = ["setuptools_scm>=8"]
+
+[tool.setuptools_scm]
+version_file = "darkknot/_version.py"

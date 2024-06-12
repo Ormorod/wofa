@@ -26,7 +26,7 @@ def plot(
     colors="Blues_r",
     xlabel=r"$a$",
     ylabel=r"$w(a)$",
-    lines=False,
+    contours=True,
     color="blue",
     **kwargs,
 ):
@@ -53,8 +53,8 @@ def plot(
     ylabel : str, optional
         Label for y-axis.
 
-    lines : bool, optional
-        Plot lines instead of contours.
+    contours : bool, optional
+        use fgivenx.plot_contours, else fgivenx.plot_lines
 
     color : str, optional
         Color of lines.
@@ -83,17 +83,7 @@ def plot(
                 break
         keys = theory.params.keys()
 
-    if lines:
-        plot_lines(
-            lambda a, theta: theory.flexknot(a, theta),
-            np.linspace(theory.amin, theory.atoday, resolution),
-            samples[keys],
-            weights=samples.get_weights(),
-            ax=ax,
-            color=color,
-            **kwargs,
-        )
-    else:
+    if contours:
         plot_contours(
             lambda a, theta: theory.flexknot(a, theta),
             np.linspace(theory.amin, theory.atoday, resolution),
@@ -101,6 +91,16 @@ def plot(
             weights=samples.get_weights(),
             ax=ax,
             colors=colors,
+            **kwargs,
+        )
+    else:
+        plot_lines(
+            lambda a, theta: theory.flexknot(a, theta),
+            np.linspace(theory.amin, theory.atoday, resolution),
+            samples[keys],
+            weights=samples.get_weights(),
+            ax=ax,
+            color=color,
             **kwargs,
         )
     ax.set(xlabel=xlabel, ylabel=ylabel)
