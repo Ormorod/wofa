@@ -84,6 +84,7 @@ def plot(
             xlabel = r"$z$"
     else:
         f = theory.flexknot
+        a = np.linspace(theory.amin, theory.atoday, resolution),
 
     if contours:
         plot_contours(
