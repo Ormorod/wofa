@@ -19,13 +19,13 @@ class DarkKnot(Theory):
     params = {}
 
     def initialize(self):
-        if self.n >= 2:
-            self.params["w0"] = None
-        for i in range(1, self.n - 1):
-            self.params[f"a{i}"] = None
-            self.params[f"w{i}"] = None
         if self.n >= 1:
             self.params["wn"] = None
+        for i in range(self.n - 1, 1, -1):
+            self.params[f"a{i}"] = None
+            self.params[f"w{i}"] = None
+        if self.n >= 2:
+            self.params["w0"] = None
 
         return super().initialize()
 
