@@ -21,7 +21,7 @@ class DarkKnot(Theory):
     def initialize(self):
         if self.n >= 1:
             self.params["wn"] = None
-        for i in range(self.n - 1, 1, -1):
+        for i in range(self.n - 2, 0, -1):
             self.params[f"a{i}"] = None
             self.params[f"w{i}"] = None
         if self.n >= 2:
