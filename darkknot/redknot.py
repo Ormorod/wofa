@@ -19,7 +19,7 @@ class RedKnot(Theory):
     params = {}
 
     def initialize(self):
-        if self.n >= 1:
+        if self.n >= 2:
             self.params["w0"] = None
         for i in range(1, self.n - 1):
             self.params[f"z{i}"] = None
