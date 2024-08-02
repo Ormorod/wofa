@@ -3,35 +3,37 @@ from cobaya import Theory
 from flexknot import AdaptiveKnot, FlexKnot
 
 
-class DarkKnot(Theory):
+class RedKnot(Theory):
     """
-    Abstract base class for flexknot w(a).
+    Abstract base class for flexknot w(z).
 
     Requires additional class attribute params, which needs to be
     ordered in the correct structure for a flexknot, and definition of
     self.flexknot needs to be added to
     """
 
-    num_as = 10000
-    amin = 1e-10
-    atoday = 1
+    num_zs = 10000
+    zmax = 1e10
+    ztoday = 0
     n = None
     params = {}
 
     def initialize(self):
         if self.n >= 1:
-            self.params["wn"] = None
-        for i in range(self.n - 2, 0, -1):
-            self.params[f"a{i}"] = None
-            self.params[f"w{i}"] = None
-        if self.n >= 2:
             self.params["w0"] = None
+        for i in range(1, self.n - 1):
+            self.params[f"z{i}"] = None
+            self.params[f"w{i}"] = None
+        if self.n >= 1:
+            self.params["wn"] = None
 
         return super().initialize()
 
     def wofa(self, theta):
-        a = np.logspace(np.log10(self.amin), np.log10(self.atoday), self.num_as)
-        w = self.flexknot(a, theta)
+        z = np.logspace(np.log10(self.ztoday), np.log10(self.zmax),
+                        self.num_zs)
+        a = 1/(1+z)
+        w = self.flexknot(1/a-1, theta)
 
         return a, w
 
@@ -47,7 +49,7 @@ class DarkKnot(Theory):
         return self.current_state["dark_energy"]
 
 
-class Adaptive(DarkKnot):
+class RedAdaptive(RedKnot):
 
     n = 9
 
@@ -60,7 +62,7 @@ class Adaptive(DarkKnot):
         super().initialize()
 
 
-class Vanilla(DarkKnot):
+class RedVanilla(RedKnot):
     def __init__(self, *args, **kwargs):
         self.flexknot = FlexKnot(self.amin, self.atoday)
         super().__init__(*args, **kwargs)
