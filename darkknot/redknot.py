@@ -30,10 +30,11 @@ class RedKnot(Theory):
         return super().initialize()
 
     def wofa(self, theta):
-        z = np.logspace(np.log10(self.ztoday), np.log10(self.zmax),
-                        self.num_zs)
-        a = 1/(1+z)
-        w = self.flexknot(1/a-1, theta)
+        oneplusz = np.logspace(np.log10(1+self.ztoday),
+                               np.log10(1+self.zmax),
+                               self.num_zs)
+        a = 1 / oneplusz
+        w = self.flexknot(oneplusz-1, theta)
 
         return a, w
 
