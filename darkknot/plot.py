@@ -76,14 +76,17 @@ def plot(
 
     if redshift:
         def f(z, theta):
-            return theory.flexknot(theory.atoday/(1+z), theta)
+            return theory.flexknot(theory.atoday/(1+z),
+                                   theta[~np.isnan(theta)])
         # really z
         a = np.linspace(1/theory.atoday-1, redshift, resolution)
         # change xlabel if it is still the default
         if xlabel == r"$a$":
             xlabel = r"$z$"
     else:
-        f = theory.flexknot
+        def f(a, theta):
+            theta
+            return theory.flexknot(a, theta[~np.isnan(theta)])
         a = np.linspace(theory.amin, theory.atoday, resolution)
 
     if contours:
