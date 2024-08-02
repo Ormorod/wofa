@@ -62,7 +62,7 @@ class RedAdaptive(RedKnot):
         super().initialize()
 
 
-class RedVanilla(RedKnot):
+class Strawberry(RedKnot):
     def __init__(self, *args, **kwargs):
         self.flexknot = FlexKnot(self.amin, self.atoday)
         super().__init__(*args, **kwargs)
