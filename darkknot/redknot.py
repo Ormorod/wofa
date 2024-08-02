@@ -54,7 +54,7 @@ class RedAdaptive(RedKnot):
     n = 9
 
     def __init__(self, *args, **kwargs):
-        self.flexknot = AdaptiveKnot(self.amin, self.atoday)
+        self.flexknot = AdaptiveKnot(self.ztoday, self.zmax)
         super().__init__(*args, **kwargs)
 
     def initialize(self):
@@ -64,5 +64,5 @@ class RedAdaptive(RedKnot):
 
 class Strawberry(RedKnot):
     def __init__(self, *args, **kwargs):
-        self.flexknot = FlexKnot(self.amin, self.atoday)
+        self.flexknot = FlexKnot(self.ztoday, self.zmax)
         super().__init__(*args, **kwargs)
