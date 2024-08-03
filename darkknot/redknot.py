@@ -32,7 +32,7 @@ class RedKnot(Theory):
     def wofa(self, theta):
         oneplusz = np.logspace(np.log10(1+self.ztoday),
                                np.log10(1+self.zmax),
-                               self.num_zs)
+                               self.num_zs)[::-1]
         a = 1 / oneplusz
         w = self.flexknot(oneplusz-1, theta)
 
