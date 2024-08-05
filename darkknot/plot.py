@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from anesthetic import NestedSamples
 from fgivenx import plot_contours, plot_lines
 from darkknot import darkknot
-from redknot import RedAdaptive, Strawberry
+from darkknot import redknot
 
 
 def plot(
@@ -176,11 +176,11 @@ def redplot(
     # regex matching may pick up the wrong order of keys, so get the correct
     # order from the relevant theory
     if "Nw" in keys:
-        theory = RedAdaptive({"n": n})
+        theory = redknot.RedAdaptive({"n": n})
         keys = theory.params.keys()
         keys = list(filter(lambda k: k in samples, keys))
     else:
-        theory = Strawberry({"n": n})
+        theory = redknot.Strawberry({"n": n})
         keys = theory.params.keys()
 
     if scale_factor:
